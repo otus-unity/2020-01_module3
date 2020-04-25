@@ -6,7 +6,6 @@ public sealed class PlayerMovement : MonoBehaviour
 {
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
-    [Range(0.0f, 1.0f), SerializeField] private float _moveSpeed;
     private Vector3 _movement;
     private PlayerAnimation _playerAnimation;
     private NavMeshAgent _agent;
@@ -19,6 +18,7 @@ public sealed class PlayerMovement : MonoBehaviour
         _playerAnimation = GetComponent<PlayerAnimation>();
         FindObjectOfType<CameraController>().SetTarget(transform);
         _agent.updateRotation = false;
+        gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
     private void Update()
@@ -26,15 +26,6 @@ public sealed class PlayerMovement : MonoBehaviour
         var timeDelta = Time.deltaTime;
         var horizontal = Input.GetAxis(HORIZONTAL);
         var vertical = Input.GetAxis(VERTICAL);
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            _playerAnimation.OnFireEnable();
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            _playerAnimation.OnFireDisable();
-        }
 
         _movement.Set(horizontal, 0.0f, vertical);
 
@@ -48,7 +39,7 @@ public sealed class PlayerMovement : MonoBehaviour
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x,
             _camera.transform.localEulerAngles.y, transform.localEulerAngles.z);
 
-        _agent.Move(targetDirection * (timeDelta * _moveSpeed));
+        _agent.Move(targetDirection * timeDelta);
         _agent.SetDestination(transform.position +  targetDirection);
 
         _playerAnimation.SetMove(_movement);
