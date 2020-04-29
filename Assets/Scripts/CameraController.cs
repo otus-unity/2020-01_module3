@@ -62,6 +62,9 @@ public sealed class CameraController : MonoBehaviour
 
     private void RotationCamera()
     {
+        if (_target == null)
+            return;
+
         transform.RotateAround(_target.position, Vector3.up, Input.GetAxis(MOUSE_X) * _sensitivity);
 
         Vector3 position = _target.position - (transform.rotation * Vector3.forward * _distance);

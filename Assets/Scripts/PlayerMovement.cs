@@ -23,6 +23,9 @@ public sealed class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (_agent == null)
+            return;
+
         var timeDelta = Time.deltaTime;
         var horizontal = Input.GetAxis(HORIZONTAL);
         var vertical = Input.GetAxis(VERTICAL);
