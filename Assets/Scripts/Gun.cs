@@ -1,4 +1,4 @@
-﻿using Photon.Pun;
+using Photon.Pun;
 using UnityEngine;
 
 public sealed class Gun : MonoBehaviour
@@ -15,7 +15,7 @@ public sealed class Gun : MonoBehaviour
     public void Start()
     {
         _mainCamera = Camera.main;
-        _layerMask = 1 << 8;
+        _layerMask = 0;//1 << 8;
         _layerMask = ~ _layerMask;
         _center.Set(Screen.width / 2.0f, Screen.height / 2.0f);
     }

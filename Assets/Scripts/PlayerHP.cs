@@ -1,4 +1,4 @@
-﻿using ExitGames.Client.Photon;
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -10,6 +10,7 @@ namespace DefaultNamespace
     {
         public float MaxHealth = 100.0f;
         public TextMesh HealthBar;
+        public float Health => _health;
         private float _health;
 
         private void Start()
