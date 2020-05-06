@@ -13,9 +13,13 @@ namespace DefaultNamespace
         public float Health => _health;
         private float _health;
 
-        private void Start()
+        private void Awake()
         {
             _health = MaxHealth;
+        }
+
+        private void Start()
+        {
             GetDamageRPC(0.0f);
         }
 

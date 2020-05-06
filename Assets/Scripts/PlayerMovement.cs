@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.AI;
 
 
@@ -10,9 +10,11 @@ public sealed class PlayerMovement : MonoBehaviour
     private PlayerAnimation _playerAnimation;
     private NavMeshAgent _agent;
     private Camera _camera;
+    bool isBot;
 
     private void Awake()
     {
+        isBot = GetComponent<BotUtility>() != null;
         _camera = Camera.main;
         _agent = GetComponent<NavMeshAgent>();
         _playerAnimation = GetComponent<PlayerAnimation>();
@@ -25,6 +27,11 @@ public sealed class PlayerMovement : MonoBehaviour
     {
         if (_agent == null)
             return;
+
+        if (isBot) {
+            _playerAnimation.SetMove(_agent.velocity);
+            return;
+        }
 
         var timeDelta = Time.deltaTime;
         var horizontal = Input.GetAxis(HORIZONTAL);

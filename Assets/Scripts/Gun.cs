@@ -12,10 +12,12 @@ public sealed class Gun : MonoBehaviour
     private bool _isReady = true;
     private float _rechergeTime = 0.2f;
     GunAmmo ammo;
+    bool isBot;
 
     public void Start()
     {
         ammo = GetComponentInParent<GunAmmo>();
+        isBot = GetComponent<BotUtility>() != null;
         _mainCamera = Camera.main;
         _layerMask = 0;//1 << 8;
         _layerMask = ~ _layerMask;
@@ -37,24 +39,40 @@ public sealed class Gun : MonoBehaviour
         return ammo.Count > 0;
     }
 
+    public void BeginAnimateShoot()
+    {
+        _playerAnimation.OnFireEnable();
+    }
+
+    public void EndAnimateShoot()
+    {
+        _playerAnimation.OnFireDisable();
+    }
+
+    public bool Shoot(Ray ray)
+    {
+        --ammo.Count;
+        foreach (var hit in Physics.RaycastAll(ray, _dedicateDistance, _layerMask))
+        {
+            if (hit.collider)
+            {
+                if (hit.collider.TryGetComponent<PhotonView>(out PhotonView view))
+                {
+                    view.RPC("GetDamageRPC", RpcTarget.All, Damage);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     private void Update()
     {
         if (Input.GetMouseButton(0) && HasEnoughAmmo())
         {
             if (_isReady)
             {
-                --ammo.Count;
-                if (Physics.Raycast(_mainCamera.ScreenPointToRay(_center),
-                    out RaycastHit hit, _dedicateDistance, _layerMask))
-                {
-                    if (hit.collider)
-                    {
-                        if (hit.collider.TryGetComponent<PhotonView>(out PhotonView view))
-                        {
-                            view.RPC("GetDamageRPC", RpcTarget.All, Damage);
-                        }
-                    }
-                }
+                Shoot(_mainCamera.ScreenPointToRay(_center));
                 _isReady = false;
                 Invoke(nameof(ReadyShoot), _rechergeTime);
             }
@@ -63,11 +81,11 @@ public sealed class Gun : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && HasEnoughAmmo())
         {
             _center.Set(Screen.width / 2.0f, Screen.height / 2.0f);
-            _playerAnimation.OnFireEnable();
+            BeginAnimateShoot();
         }
         if (Input.GetMouseButtonUp(0))
         {
-            _playerAnimation.OnFireDisable();
+            EndAnimateShoot();
         }
     }
 

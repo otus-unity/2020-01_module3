@@ -1,14 +1,17 @@
-﻿using Photon.Pun;
+using Photon.Pun;
 using UnityEngine;
 
 public sealed class SelectWeapon : MonoBehaviourPunCallbacks
 {
     public Gun Gun;
     public PlayerAnimation PlayerAnimation;
+    bool isBot;
 
     private void Start()
     {
-        Gun.SetActive(false);
+        isBot = GetComponent<BotUtility>() != null;
+
+        Gun.SetActive(isBot);
         if (!photonView.IsMine)
         {
             Destroy(this);
@@ -20,6 +23,9 @@ public sealed class SelectWeapon : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+        if (isBot)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Gun.SetActive(true);
