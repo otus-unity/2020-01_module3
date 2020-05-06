@@ -11,9 +11,11 @@ public sealed class Gun : MonoBehaviour
     private int _layerMask;
     private bool _isReady = true;
     private float _rechergeTime = 0.2f;
+    GunAmmo ammo;
 
     public void Start()
     {
+        ammo = GetComponentInParent<GunAmmo>();
         _mainCamera = Camera.main;
         _layerMask = 0;//1 << 8;
         _layerMask = ~ _layerMask;
@@ -30,12 +32,18 @@ public sealed class Gun : MonoBehaviour
         _playerAnimation = playerAnimation;
     }
 
+    public bool HasEnoughAmmo()
+    {
+        return ammo.Count > 0;
+    }
+
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && HasEnoughAmmo())
         {
             if (_isReady)
             {
+                --ammo.Count;
                 if (Physics.Raycast(_mainCamera.ScreenPointToRay(_center),
                     out RaycastHit hit, _dedicateDistance, _layerMask))
                 {
@@ -44,15 +52,15 @@ public sealed class Gun : MonoBehaviour
                         if (hit.collider.TryGetComponent<PhotonView>(out PhotonView view))
                         {
                             view.RPC("GetDamageRPC", RpcTarget.All, Damage);
-                            _isReady = false;
-                            Invoke(nameof(ReadyShoot), _rechergeTime);
                         }
                     }
                 }
+                _isReady = false;
+                Invoke(nameof(ReadyShoot), _rechergeTime);
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && HasEnoughAmmo())
         {
             _center.Set(Screen.width / 2.0f, Screen.height / 2.0f);
             _playerAnimation.OnFireEnable();

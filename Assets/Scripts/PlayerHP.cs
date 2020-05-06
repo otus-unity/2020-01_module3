@@ -44,5 +44,10 @@ namespace DefaultNamespace
                 PhotonNetwork.RaiseEvent(1, gameObject.name, raiseEventOptions, sendOptions);
             }
         }
+
+        public void AddHealth(float add)
+        {
+            GetDamageRPC(-add);
+        }
     }
 }
