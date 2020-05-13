@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e16f0575d73480ebe7b76bb4ae3939, type: 3}
+  m_Name: FindHealth
+  m_EditorClassIdentifier: 
+  m_Parameters:
+  - m_Name: Agent
+    m_RequiredTraits:
+    - {fileID: 11400000, guid: 246f61c52d33c3a40a88b7f22c2859ee, type: 2}
+    m_ProhibitedTraits: []
+    m_LimitCount: 0
+    m_LimitComparerType: 
+    m_LimitComparerReference: 
+  - m_Name: Collectible
+    m_RequiredTraits:
+    - {fileID: 11400000, guid: 3c0a534d9ed10114b840ededee4065bb, type: 2}
+    m_ProhibitedTraits: []
+    m_LimitCount: 0
+    m_LimitComparerType: 
+    m_LimitComparerReference: 
+  m_Preconditions:
+  - m_Operator: <
+    m_CustomOperatorType: 
+    m_OperandA:
+      m_Parameter: Agent
+      m_Trait: {fileID: 11400000, guid: 246f61c52d33c3a40a88b7f22c2859ee, type: 2}
+      m_TraitFieldId: 100
+      m_Enum: {fileID: 0}
+      m_Value: 
+    m_OperandB:
+      m_Parameter: 
+      m_Trait: {fileID: 0}
+      m_TraitFieldId: 0
+      m_Enum: {fileID: 0}
+      m_Value: 50f
+  - m_Operator: ==
+    m_CustomOperatorType: 
+    m_OperandA:
+      m_Parameter: Collectible
+      m_Trait: {fileID: 11400000, guid: 3c0a534d9ed10114b840ededee4065bb, type: 2}
+      m_TraitFieldId: 100
+      m_Enum: {fileID: 0}
+      m_Value: 
+    m_OperandB:
+      m_Parameter: 
+      m_Trait: {fileID: 0}
+      m_TraitFieldId: 0
+      m_Enum: {fileID: 11400000, guid: b64b396544874004a8d424e01acb41a0, type: 2}
+      m_Value: Health
+  m_CreatedObjects: []
+  m_RemovedObjects: []
+  m_ObjectModifiers:
+  - m_Operator: +=
+    m_CustomOperatorType: 
+    m_OperandA:
+      m_Parameter: Agent
+      m_Trait: {fileID: 11400000, guid: 246f61c52d33c3a40a88b7f22c2859ee, type: 2}
+      m_TraitFieldId: 100
+      m_Enum: {fileID: 0}
+      m_Value: 
+    m_OperandB:
+      m_Parameter: Collectible
+      m_Trait: {fileID: 11400000, guid: 3c0a534d9ed10114b840ededee4065bb, type: 2}
+      m_TraitFieldId: 101
+      m_Enum: {fileID: 0}
+      m_Value: 
+  - m_Operator: =
+    m_CustomOperatorType: 
+    m_OperandA:
+      m_Parameter: Agent
+      m_Trait: {fileID: 11400000, guid: 246f61c52d33c3a40a88b7f22c2859ee, type: 2}
+      m_TraitFieldId: 102
+      m_Enum: {fileID: 0}
+      m_Value: 
+    m_OperandB:
+      m_Parameter: 
+      m_Trait: {fileID: 0}
+      m_TraitFieldId: 0
+      m_Enum: {fileID: 0}
+      m_Value: false
+  m_Reward: 0
+  m_CustomRewards:
+  - m_Operator: +=
+    m_Typename: CollectHealthReward
+    m_Parameters:
+    - Agent

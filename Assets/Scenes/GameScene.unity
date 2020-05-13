@@ -1602,6 +1602,106 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2b0a0d71645ca440ac1d0a64e388b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1904660701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904660699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b604e166ca1e843a3dd86d88bad013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1904660702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904660699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8ac131c09d04008af565adfda708ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PlanDefinition: {fileID: 11400000, guid: 485c93ea24269f140a72192770d12812, type: 2}
+  m_InitializeOnStart: 1
+  m_SearchSettings:
+    SearchIterationsPerUpdate: 1
+    StateExpansionBudgetPerIteration: 1
+    UseCustomSearchFrequency: 0
+    MinFramesPerSearchUpdate: 0
+    CapPlanSize: 0
+    MaxStatesInPlan: 0
+    StopPlanningWhenToleranceAchieved: 0
+    RootPolicyValueTolerance: 0
+    CapPlanUpdates: 0
+    MaxUpdates: 2147483647
+    GraphSelectionJobMode: 0
+    GraphBackpropagationJobMode: 0
+  m_ExecutionSettings:
+    ExecutionMode: 0
+    MaximumDecisionTolerance: 3.4028235e+38
+    MinimumPlanSize: 0
+    MinimumSearchTime: 0
+  m_WorldObjectQuery:
+    m_Filters: []
+  m_ActionExecuteInfos:
+  - m_ActionName: AttackEnemy
+    m_PlanExecutorStateUpdateMode: 1
+    m_Method: AttackEnemy
+    m_SourceGameObject: {fileID: 1904660699}
+    m_Source: {fileID: 1904660701}
+    m_Arguments: []
+  - m_ActionName: FindAmmo
+    m_PlanExecutorStateUpdateMode: 1
+    m_Method: NavigateTo
+    m_SourceGameObject: {fileID: 1904660699}
+    m_Source: {fileID: 1904660701}
+    m_Arguments:
+    - m_Parameter: Collectible
+      m_Trait: {fileID: 0}
+      m_TraitFieldId: 0
+      m_Enum: {fileID: 0}
+      m_Value: 
+  - m_ActionName: FindHealth
+    m_PlanExecutorStateUpdateMode: 1
+    m_Method: NavigateTo
+    m_SourceGameObject: {fileID: 1904660699}
+    m_Source: {fileID: 1904660701}
+    m_Arguments:
+    - m_Parameter: Collectible
+      m_Trait: {fileID: 0}
+      m_TraitFieldId: 0
+      m_Enum: {fileID: 0}
+      m_Value: 
+  - m_ActionName: NavigateToEnemy
+    m_PlanExecutorStateUpdateMode: 1
+    m_Method: NavigateToEnemy
+    m_SourceGameObject: {fileID: 1904660699}
+    m_Source: {fileID: 1904660701}
+    m_Arguments: []
+  m_AutoUpdate: 1
+--- !u!114 &1904660703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904660699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4163c4525e1464b2d87e13978b85c02d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ObjectData:
+    m_Name: swat (2)
+    m_TraitData:
+    - m_TraitDefinition: {fileID: 11400000, guid: 246f61c52d33c3a40a88b7f22c2859ee,
+        type: 2}
+      m_FieldValues: []
 --- !u!1001 &1985677867
 PrefabInstance:
   m_ObjectHideFlags: 0

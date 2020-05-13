@@ -26,6 +26,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Amount: 50
+--- !u!114 &4193899790342520971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929774109140835866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4163c4525e1464b2d87e13978b85c02d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ObjectData:
+    m_Name: HealthPack Variant
+    m_TraitData:
+    - m_TraitDefinition: {fileID: 11400000, guid: 3c0a534d9ed10114b840ededee4065bb,
+        type: 2}
+      m_FieldValues:
+      - m_Name: Provides
+        m_BoolValue: 0
+        m_FloatValue: 0
+        m_IntValue: 0
+        m_StringValue: 
+        m_ObjectValue: {fileID: 0}
+      - m_Name: Amount
+        m_BoolValue: 0
+        m_FloatValue: 50
+        m_IntValue: 0
+        m_StringValue: 
+        m_ObjectValue: {fileID: 0}
 --- !u!1001 &1927787495299111002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35,7 +65,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1987713744733760, guid: b55df95fa6211964e8ad561501250fac, type: 3}
       propertyPath: m_Name
-      value: HealthPack
+      value: HealthPack Variant
       objectReference: {fileID: 0}
     - target: {fileID: 4792054580643688, guid: b55df95fa6211964e8ad561501250fac, type: 3}
       propertyPath: m_LocalPosition.x
